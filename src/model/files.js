@@ -1,12 +1,12 @@
 const { Schema, model } = require("mongoose");
 
 const FileSchema = new Schema({
-  name: { type: String, require: true },
-  size: { type: Number, require: true },
-  encoding: { type: String, require: true },
-  mimetype: { type: String, require: true },
-  md5: { type: String, require: true },
-  data: { type: Buffer, require: true },
+  name: { type: String, required: true },
+  size: { type: Number, required: true },
+  encoding: { type: String, required: true },
+  mimetype: { type: String, required: true },
+  md5: { type: String, required: true },
+  data: { type: Buffer, required: true },
 });
 const FileModel = model("files", FileSchema);
 
