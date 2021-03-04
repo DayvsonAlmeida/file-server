@@ -1,6 +1,6 @@
-const path = require("path");
+const saveFile = require("../../services/files/save");
 
-const upload = (req, res) => {
+const upload = async (req, res) => {
   const { files } = req;
   const hasFiles = files && Object.keys(files).length > 0;
 
@@ -8,14 +8,9 @@ const upload = (req, res) => {
     return res.status(400).send({ message: "No file were uploaded" });
 
   const { file } = files;
-  const basePath = path.dirname(require.main.filename);
-  const uploadPath = `${basePath}/db/${file.name}`;
+  const { _id } = await saveFile(file);
 
-  file.mv(uploadPath, (err) => {
-    if (err) return res.status(500).send({ message: "Can not save file" });
-
-    return res.send({ message: "File uploaded" });
-  });
+  return res.send({ hash: _id });
 };
 
 module.exports = upload;
