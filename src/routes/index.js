@@ -6,8 +6,4 @@ const mainRouter = Router();
 
 mainRouter.use("/files", filesRouter);
 
-mainRouter.get("/", (req, res) => {
-  res.send("Hello World");
-});
-
 module.exports = mainRouter;
